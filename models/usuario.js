@@ -4,14 +4,15 @@ const UsuarioSchema = new mongoose.Schema({
     nombre:{type: String,maxLength:25,required:true},
     apellido:{type: String,maxLength:25,required:true},
     tipoDocumento:{type: String,maxLength:25,required:true},
-    numeroDocumento:{type: Number,minLength:6,required:true,unique:true},
+    numeroDocumento:{type: String,minLength:6,required:true,unique:true},
     direccion:{type: String,maxLength:25,required:true},
     ciudad:{type: String,unique:true,required:true},
     departamento:{type: String,required:true},
     personaContacto:{type: String,maxLength:25,required:true},
-    telefono:{type:Number,maxLength:25,required:true},
+    telefono:{type:String,maxLength:25,required:true},
     email:{type: String,maxLength:25,required:true},
     password:{type: String,required:true,minLength:6},
+    estado:{type: String, default:1},
     createAt:{type:Date,default:Date.new}
 })
 
