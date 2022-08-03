@@ -18,4 +18,4 @@ const MuestraSchema = new mongoose.Schema({
 
 })
 
-export default mongoose.model('Muestra', MuestraSchema)
+export default mongoose.model('Muestra',MuestraSchema)
