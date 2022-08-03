@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import  {dbConnection} from "../database/config.js"
+import  {dbConnection} from "../dataBase/config.js"
 import usuario from "../routes/usuario.js"
 import tipomuestra from "../routes/tipoMuestra.js"
 import muestra from "../routes/muestra.js"
