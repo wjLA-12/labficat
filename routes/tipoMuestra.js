@@ -34,3 +34,6 @@ router.put('/desactivar/:id',[
     check('id').custom(helpersTipoMuestra.existeTipoMuestraById),
     validarCampos
 ],tipoMuestraPutDeActiv)
+
+
+export default router

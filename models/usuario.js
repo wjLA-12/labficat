@@ -6,7 +6,7 @@ const UsuarioSchema = new mongoose.Schema({
     tipoDocumento:{type: String,maxLength:25,required:true},
     numeroDocumento:{type: String,minLength:6,required:true,unique:true},
     direccion:{type: String,maxLength:25,required:true},
-    ciudad:{type: String,unique:true,required:true},
+    ciudad:{type: String,required:true},
     departamento:{type: String,required:true},
     personaContacto:{type: String,maxLength:25,required:true},
     telefono:{type:String,maxLength:25,required:true},

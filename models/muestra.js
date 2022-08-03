@@ -13,7 +13,7 @@ const MuestraSchema = new mongoose.Schema({
     },
     matrizMuestra:{type: String,required:true},
     fecha:{type: Date,required:true},
-    hora:{type: Time, required:true},
+    hora:{type: Date, required:true},
     createAt:{type: Date, default:Date.new}
 
 })

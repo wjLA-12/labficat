@@ -1,4 +1,4 @@
-import TipoMuestra from "../models/tipoMuestra";
+import TipoMuestra from "../models/tipoMuestra.js";
 
 const tipoMuestraGet= async (req, res)=>{
     const tipoMuestra = await TipoMuestra.find()

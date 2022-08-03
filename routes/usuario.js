@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { usuarioGet,usuarioGetId,usuarioGetIdent,usuarioPut,usuarioPost, usuarioPutActive, usuarioPutDeActiv } from "../controllers/usuario.js"
+import { usuarioGet, usuarioGetId, usuarioGetIdent, usuarioPut, usuarioPost, usuarioPutActive, usuarioPutDeActiv, usuarioGetlogin } from "../controllers/usuario.js"
 import { validarCampos } from "../middleware/validar-campos.js"
 import { check } from "express-validator"
 import { helpersUsuario } from "../helpers/usuario.js"
@@ -7,42 +7,46 @@ import { validarJWT } from "../middleware/validar-jwt.js"
 
 const router = new Router()
 
-router.get('/',[
-    validarJWT,
-    validarCampos
-],usuarioGet)
+router.get('/', [
+    validarCampos,
+    validarJWT
+], usuarioGet)
 
-router.get('/:id',[
+router.get('/:id', [
     check('id').isMongoId(),
     validarCampos
 ], usuarioGetId)
 
-router.get('/:cc/:nit',usuarioGetIdent)
-
-router.put(':/:id',[
-    check('id').isMongoId(),
+router.get('/cc/nit/:numeroDocumento',[
+    
     validarCampos
-],usuarioPut)
+], usuarioGetIdent)
 
-router.put('/activar/:id',[
-    check('id').isMongoId(),
-    check('id').custom(helpersUsuario.existeUsuarioById),
+
+ router.put('/:id', [
+     check('id').isMongoId(),
     validarCampos
-],usuarioPutActive)
+ ], usuarioPut)
 
-router.put('/desactivar/:id',[
+router.put('/activar/:id', [
     check('id').isMongoId(),
     check('id').custom(helpersUsuario.existeUsuarioById),
     validarCampos
-],usuarioPutDeActiv)
+], usuarioPutActive)
 
-router.post('/',[
-    validarJWT,
+router.put('/desactivar/:id', [
+    check('id').isMongoId(),
+    check('id').custom(helpersUsuario.existeUsuarioById),
+    validarCampos
+], usuarioPutDeActiv)
+
+router.post('/', [
+
     check('tipoUsuario', 'este campo es requerido').not().isEmpty(),
     check('nombre', 'el nombre es obligatorio').not().isEmpty(),
     check('apellido', 'el apellido es obligatorio').not().isEmpty(),
     check('tipoDocumento', 'este campo es requerido').not().isEmpty(),
-    check('numeroDocumento', 'Favor ingrese un numero de documento').isLength({min: 6}),
+    check('numeroDocumento', 'Favor ingrese un numero de documento').isLength({ min: 6 }),
     check('direccion', 'este campo es requerido').not().isEmpty(),
     check('ciudad', 'este campo es requerido').not().isEmpty(),
     check('departamento', 'este campo es requerido').not().isEmpty(),
@@ -50,9 +54,15 @@ router.post('/',[
     check('telefono', 'este campo es requerido'),
     check('email', 'El correo que ingreso no es valido').not().isEmpty(),
     check('email').custom(helpersUsuario.existeEmail),
-    check('password', 'La clave no es valida').isLength({ min: 6}),
+    check('password', 'La clave no es valida').isLength({ min: 6 }),
     validarCampos
-],usuarioPost)
+], usuarioPost)
+
+router.get('/login/user/login', [
+    check('email', 'El correo no es valido').isEmail(),
+    validarCampos
+], usuarioGetlogin)
+
 
 
 

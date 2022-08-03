@@ -2,6 +2,8 @@ import express from "express"
 import cors from "cors"
 import  {dbConnection} from "../database/config.js"
 import usuario from "../routes/usuario.js"
+import tipomuestra from "../routes/tipoMuestra.js"
+import muestra from "../routes/muestra.js"
 
 class Server{
     constructor(){
@@ -13,6 +15,9 @@ class Server{
     }
     routes(){
         this.app.use("/api/usuario", usuario)
+        this.app.use("/api/tipomuestra",tipomuestra)
+        this.app.use("/api/muestra",muestra)
+       
     }
     middlewares(){
         this.app.use(express.json())

@@ -1,7 +1,7 @@
 import {Router} from "express"
-import { muestraGet, muestaGetId, muestraPost } from "../controllers/muestra"
+import { muestraGet, muestraGetId, muestraPost } from "../controllers/muestra.js"
 import { check } from "express-validator"
-import { validarCampos } from "../middleware/validar-campos"
+import { validarCampos } from "../middleware/validar-campos.js"
 
 const router =new Router()
 
@@ -12,7 +12,7 @@ router.get('/',[
 router.get('/:id',[
     check('id').isMongoId(),
     validarCampos
-],muestaGetId)
+],muestraGetId)
 
 router.post('/',[
     

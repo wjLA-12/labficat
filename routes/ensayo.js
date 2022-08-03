@@ -36,3 +36,6 @@ router.put('/desactivar/:id',[
     check('id').custom(helpersEnsayo.existeEnsayoById),
     validarCampos
 ],ensayoPutDeActiv)
+
+
+export default router
